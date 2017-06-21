@@ -84,11 +84,13 @@ library
   if os(darwin)
     extra-lib-dirs: /usr/local/opt/icu4c/lib
     include-dirs: /usr/local/opt/icu4c/include
-  extra-libraries: sicuuc sicuin sincudt
-  --if os(mingw32)
-    --extra-libraries: icuin icudt
-  --else
-    --extra-libraries: icui18n icudata
+  if os(darwin)
+    extra-libraries: icuuc icui18n icudata
+  else
+    extra-libraries: sicuuc sicuin sincudt
+  -- else if...windows
+  --   extra-libraries: icuin icudt
+  -- else
 
   ghc-options: -Wall -fwarn-tabs
 
