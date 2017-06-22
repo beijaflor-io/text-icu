@@ -87,11 +87,10 @@ library
   if os(darwin)
     extra-libraries: icuuc icui18n icudata
   else
-    extra-libraries: sicuuc sicuin sincudt
-  -- else if...windows
-  --   extra-libraries: icuin icudt
-  -- else
-
+    if os(windows)
+      extra-libraries: sicuuc sicuin sincudt
+    else
+      extra-libraries: icuuc icuin incudt
   ghc-options: -Wall -fwarn-tabs
 
 test-suite tests
