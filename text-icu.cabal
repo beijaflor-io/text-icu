@@ -81,13 +81,18 @@ library
       Data.Text.ICU.Text
   c-sources: cbits/text_icu.c
   include-dirs: include
+
+  ghc-options: -Wall -fwarn-tabs
+
   if os(darwin)
     extra-lib-dirs: /usr/local/opt/icu4c/lib
     include-dirs: /usr/local/opt/icu4c/include
-  if os(windows)
-    extra-libraries: sicuuc sicuin sincudt
+
+  extra-libraries: icuuc
+  if os(mingw32)
+    extra-libraries: icuin icudt
   else
-    extra-libraries: icuuc icui18n icudata
+    extra-libraries: icui18n icudata
   ghc-options: -Wall -fwarn-tabs
 
 test-suite tests
